@@ -1,0 +1,39 @@
+.login__form {
+  margin-top: 120px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 108%;
+  overflow: hidden;
+}
+
+.login__button {
+  margin-top: 25px;
+  width: 25%;
+  left: 25%;
+  position: relative;
+}
+
+.signin_button {
+  margin-top: 25px;
+  width: 25%;
+  left: 25%;
+  position: relative;
+}
+
+.login__grid {
+  margin-top: 15px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.span {
+  color: red;
+}

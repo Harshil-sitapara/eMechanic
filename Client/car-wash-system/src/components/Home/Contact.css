@@ -1,0 +1,201 @@
+.container {
+  margin-top: 5rem;
+}
+
+.text-center {
+  text-align: center;
+  color: black;
+  width: 100%;
+}
+
+.contact_details {
+  padding-top: 2.25rem;
+  padding-bottom: 3.25rem;
+}
+
+.row_container {
+  align-items: center;
+  margin-right: auto;
+  margin-left: 150px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 20px;
+}
+
+.inner_img{
+  padding-left: 12%;
+}
+
+.containercontact{
+  display: flex;
+  width: 70vw;
+  margin-top: 125px;
+  margin-left:15vw;
+}
+.number{
+  height: 10em;
+  border-radius: 6px;
+  box-shadow: -2px 10px 17px 7px rgb(45 60 70 / 14%);
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+.inner{
+  width: 35vw;
+}
+.email{
+  height: 10em;
+  border-radius: 6px;
+  box-shadow: -2px 10px 17px 7px rgb(45 60 70 / 14%);
+  background-color: #ffffff;
+}
+
+.office{
+  
+  width: 30em;
+  margin-left: 10px;
+  border-radius: 6px;
+  box-shadow: -2px 10px 17px 7px rgb(45 60 70 / 14%);
+  background-color: #ffffff;
+}
+
+
+
+
+.line{
+  width: 41px;
+  height: 0;
+  /* opacity: 0.4; */
+  border: solid 1px #E73C33;
+  margin-top: -17px;
+  margin-left: 2rem;
+}
+
+.contact_heading{
+  font-size: 20px;
+  color: #716B6A;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  height: 0;
+padding: 15px;
+  position: relative;
+}
+
+.inner_heading{
+  display: flex;
+  padding: 10px;
+}
+
+
+.image_phone{
+  height: 150px;
+  width: 200px;
+
+  margin-left: 70%;
+  margin-top: -14%;
+
+}
+.image_email{
+  height: 150px;
+  width: 200px;
+  margin-left: 9%;
+  margin-top: -25%;
+}
+.image_address{
+  height: 200px;
+  width: 200px;
+  float: right;
+  margin: 10px;
+}
+
+
+.con{
+  padding-right: 10px;
+}
+
+.contactus{
+  position: absolute;
+  right: 11rem;
+  padding: 2rem;
+
+
+}
+
+.contactlick{
+  color: rgb(0, 0, 255);
+  box-shadow: 5px 5px 5px  rgb(45 60 70 / 14%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Contactus{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: auto;
+  padding: 2rem;
+  overflow-x: hidden;
+  align-items: center;
+  text-align: center;
+}
+
+.contactus_container{
+  display: flex;
+  padding: 20px;
+  margin-top: 2%;
+  width: 70vw;
+}
+
+.contactus_image{
+  border-radius: none;
+  height: 350px;
+  width: 350px;
+}
+
+.form{
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+ 
+ 
+  align-items: center;
+  text-align: center;
+
+}
+
+.col-lg-4{
+  width: 90rem;
+}
+
+.query{
+  color: rgba(5, 23, 223, 0.653);
+}

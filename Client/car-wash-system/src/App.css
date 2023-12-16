@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+ 
+  font-family: "Merriweather", serif;
+}
+
+
+.MuiPaper-root{
+background-color: rgb(60, 60, 65);
+}
+.MuiDrawer-paper{
+width: 13%;
+}

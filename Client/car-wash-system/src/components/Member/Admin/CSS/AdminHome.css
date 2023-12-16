@@ -1,0 +1,19 @@
+.admin_home {
+  margin-top: 80px;
+  margin-bottom: 20px;
+  background-color: darkgrey;
+  padding-left: 12%;
+  user-select: none;
+
+}
+
+.admin_home h4,h1{
+  font-family: 'Mukta', sans-serif;
+  text-align: center;
+}
+
+
+
+.drawer {
+  margin-top: 50px;
+}

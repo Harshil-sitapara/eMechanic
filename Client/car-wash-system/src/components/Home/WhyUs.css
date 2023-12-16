@@ -1,0 +1,304 @@
+.component {
+  margin-top: 80px;
+}
+
+.banner {
+  display: flex;
+  padding: 20px;
+  flex-direction: row;
+  margin: 60px;
+}
+
+.banner__image {
+  margin-left: 20px;
+  height: 450px;
+  display: block;
+  width: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.banner__contentRight {
+  margin-left: 100px;
+}
+
+.banner__contentLeft {
+  margin-right: 100px;
+}
+
+.banner__heading {
+  font-weight: bold;
+  color: rgb(23, 31, 60);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.banner__feature {
+  font-size: 20px;
+  padding: 0px 16px 2px;
+  border-radius: 25px;
+  background-color: #e1f4ea;
+  padding: 3px 15px;
+  color: #6dcb99;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.banner__para {
+  font-size: 22px;
+  line-height: 30px;
+  color: #525252;
+  text-align: justify;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-family: "Poppins", sans-serif;
+}
+
+.feature__heading {
+  margin-top: 30px;
+  font-size: 36px;
+  color: #6dcb99;
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 0.6rem !important;
+  box-sizing: inherit;
+}
+
+.feature__subHeading {
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  color: #202020;
+  line-height: 1.2;
+  font-weight: 600;
+  padding-bottom: 1.2rem !important;
+  box-sizing: inherit;
+  display: block;
+}
+
+.points {
+  font-weight: 600;
+  color: #202020;
+  line-height: 1.2;
+  font-family: "Poppins", sans-serif;
+  text-align: justify;
+}
+.userbg{
+  height: 100%;
+  width: 100%;
+
+
+}
+/* .head{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+
+
+} */
+/* .title{
+  color: yellow;
+  left: 25%;
+  position: relative;
+  font-size: 35px;
+
+}
+.text{
+  width: 99%;
+  left: 25%;
+position: relative;
+  font-size: 50px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.col{
+  margin: 3rem;
+  margin-bottom: 0;
+  width: 80vw;
+}
+
+
+.tips_container{
+  display: flex;
+  /* border: 1px solid red; */
+  margin:2rem;
+}
+
+.bigcontainer{
+ margin: 1rem;
+ /* border: 2px solid blue; */
+ padding: 10px;
+ width: 50vw; display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+.smallcontainer{
+  margin: 3rem;
+  /* border: 2px solid rgb(141, 0, 0); */
+  height: 10%;
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+
+
+.inner_container{
+  display: flex;
+
+}
+.advice_item{
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin:1rem;
+  width: 300px;
+}
+
+.advice_heading{
+  font-size: 18px;
+  color: #0288d1;
+}
+.tips_para{
+  opacity: 0.7;
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+.head{
+  display: flex;
+  background-color: #e2e3e5;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.homeimage{
+  width:60%;
+  position: relative;
+  right: 2%;
+  height: 60%;
+
+}
+
+
+.btn-danger{
+  width: 225px;
+  background-color: #fb0937;
+  color: #fff;
+  transition: 0.5s;
+  border: none;
+  height: 50px;
+  margin-top: 2rem;
+  border-radius: 20px;
+}
+
+.home_top{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  left: 4%;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  padding: 10px;
+}
+
+
+h1{
+  color: #000;
+  padding: 0px;
+  font-size: 38px;
+}
+
+
+strong{
+  font-weight: bolder;
+}
+
+small{
+  font-size: 80%;
+  font-weight: 400;
+}
+
+
+.text{
+  color: #000;
+  font-size: 16px;
+}
+
+
+
+.activeuser_container {
+  width: 100%;
+  margin: 5% 0% 5% 0%;
+  /* height: 30vh; */
+  display: flex;
+  align-items: center;
+
+  text-align: center;
+  justify-content: center;
+}
+
+.activeuser {
+  height: 25%;
+  width: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.users {
+  border-right: 1px solid rgb(0, 0, 0);
+  width: 33%;
+  margin-left: 10px;
+}
+.artwork{
+  border-right: 1px solid rgb(0, 0, 0);
+  margin-left: 10px;
+  width: 33%;
+}
+
+.span{
+  padding-right: 10px;
+}
+
+
+.activenumbers {
+  font-size: 30px;
+  font-family: Red Hat Display;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: 0em;
+  color: var(--primary-color);
+
+}
+
+
+
+.rentention {
+  width: 33%;
+}
