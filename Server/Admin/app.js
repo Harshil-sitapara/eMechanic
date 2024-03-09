@@ -9,6 +9,7 @@ const carRoutes = require("./services/carServices");
 const serviceRoutes = require("./services/car-washServices");
 const orderRoutes = require("./services/orderServices");
 const mechanicRoutes = require("./services/mechanicServices");
+require('dotenv').config();
 
 var corsOptions = {
   origin: "http://localhost:3000",
@@ -23,10 +24,8 @@ module.exports = {
 
 mongoose
   .connect(
-    // `mongodb+srv://root:${dbConfig.PASSWORD}@learnmongodb.tuuzo.mongodb.net/${dbConfig.DBNAME}?retryWrites=true&w=majority`,
-    // `mongodb+srv://root:root@cluster0.6ieoq7a.mongodb.net/CarWashSystem?retryWrites=true&w=majority`,
-    `mongodb://localhost:27017/emechanic`,
-    
+    // `mongodb://localhost:27017/emechanic`,
+    process.env.MONGO_URL,
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
   )
   .catch((err) => {
