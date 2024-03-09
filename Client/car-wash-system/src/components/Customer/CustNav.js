@@ -53,13 +53,13 @@ function CustNav() {
         >
           MY BOOKINGS
         </NavLink>
-        <NavLink
+        <a
           onClick={logout}
           className={`nav__link ${show && "nav__linkscroll"}`}
-          to="/login"
+          href="/login"
         >
           LOGOUT
-        </NavLink>
+        </a>
       </div>
     </nav>
   );

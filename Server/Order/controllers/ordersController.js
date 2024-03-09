@@ -50,6 +50,27 @@ exports.findCompltedOrders = (req, res) => {
       });
     });
 };
+exports.findRejectedOrders = (req, res) => {
+  Order.find({ status: "REJECT" })
+    .exec()
+    .then((response) => {
+      if (response.length == 0) {
+        res.status(200).json({
+          message: "No Rejected Orders are available",
+        });
+      } else {
+        res.status(200).json({
+          orders: response,
+        });
+      }
+    })
+    .catch((err) => {
+      console.log("Find All Completed Orders Error: " + err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
 
 // "Request Placed",
 //           "Request Cancel",

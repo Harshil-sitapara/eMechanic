@@ -1,8 +1,7 @@
 import axios from "axios";
 import authHeader from "../member/auth_header";
 
-const AUTH_URL = "http://localhost:8010/admin/auth/";
-
+const AUTH_URL = "http://localhost:8088/admin/auth/";
 class AuthService {
   // Login method
   async login(email, password) {
@@ -12,7 +11,7 @@ class AuthService {
         email,
         password,
       });
-      if (response.data.token) {
+      if (response.data && response.data.token) {
         if (response.data.role === "ADMIN") {
           console.log(response.data.name);
           localStorage.setItem("admin", JSON.stringify(response.data));
@@ -20,11 +19,14 @@ class AuthService {
           console.log(response.data.name);
           localStorage.setItem("mechanic", JSON.stringify(response.data));
         }
+        return response.data;
+      } else {
+        alert("Invalid Email or password");
+        return null;
       }
-      console.log(response.data.role);
-      return response.data;
     } catch (err) {
       console.log("Login Error" + err);
+      throw err; // Rethrow the error to be caught in onSubmit
     }
   }
   // Register mechanic
@@ -47,12 +49,10 @@ class AuthService {
   // Logout methods
   logout() {
     localStorage.removeItem("admin");
-    console.log("Inside Logout Method");
   }
 
   logoutMechanic() {
     localStorage.removeItem("mechanic");
-    console.log("Inside Logout Method");
   }
   // Register
   register(name, email, password) {

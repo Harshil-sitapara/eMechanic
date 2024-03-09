@@ -4,7 +4,7 @@ const app = require("./app");
 require("dotenv").config();
 
 // const port =  8088;
-const port =process.env.PORT || 8088
+const port = 8088 || process.env.PORT  
 
 const server = http.createServer(app);
 

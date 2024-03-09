@@ -15,7 +15,7 @@ function Mechanic() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const getAllMecahnic = () => {
-    MechanicServices.findAll()
+    MechanicServices.findAvailable()
       .then((response) => {
         setMechanic(response);
       })
@@ -137,7 +137,7 @@ function Mechanic() {
                       required: "Name is Required",
                     })}
                   />
-                  {errors.name && <span>{errors.name.message}</span>}
+                  {errors.name && <span style={{color:"red"}}>{errors.name.message}</span>}
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -149,7 +149,7 @@ function Mechanic() {
                       required: "Mobile is Required",
                     })}
                   />
-                  {errors.mobile && <span>{errors.mobile.message}</span>}
+                  {errors.mobile && <span style={{color:"red"}}>{errors.mobile.message}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -166,7 +166,7 @@ function Mechanic() {
                       },
                     })}
                   />
-                  {errors.email && <span>{errors.email.message}</span>}
+                  {errors.email && <span style={{color:"red"}}>{errors.email.message}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -179,7 +179,7 @@ function Mechanic() {
                       required: "Password is Required",
                     })}
                   />
-                  {errors.password && <span>{errors.password.message}</span>}
+                  {errors.password && <span style={{color:"red"}}>{errors.password.message}</span>}
                 </Grid>
               </Grid>
               <br />

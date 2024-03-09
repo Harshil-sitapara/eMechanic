@@ -1,5 +1,38 @@
 .cars_container {
   margin-top: 70px;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
   margin-left: 13%;
+}
+
+.cars_container .see-complete-btn {
+  background-color: #01579b;
+  color: rgb(255, 255, 255);
+  padding: 8px 20px;
+  box-shadow: none;
+  margin-left: 12px;
+  border: none;
+}
+.see-complete-btn:hover {
+  color: white;
+  border: none;
+}
+
+.no-order {
+  font-size: 22px;
+  font-family: "Arial Narrow Bold", sans-serif;
+}
+
+.reject-button {
+  background-color: #e34545; 
+  color: #fff; 
+  border: none; 
+  padding: 8px 16px;
+  cursor: pointer; 
+  border-radius: 4px;
+  transition: background-color 0.3s ease; 
+  width: 8rem;
+}
+
+.reject-button:hover {
+  background-color: #b73535; 
 }

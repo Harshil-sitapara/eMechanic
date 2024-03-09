@@ -9,16 +9,18 @@ import Login from "./components/Home/Login";
 
 function App() {
   return (
-    <Router>
-      <Home />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/cust_home" component={Customer} />
-        <Route path="/admin_home" component={Admin} />
-        <Route path="/mechanic_home" component={Mechanic} />
-        {/* <Route exact path="/login" component={Login} /> */}
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Home />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/cust_home" component={Customer} />
+          <Route path="/admin_home" component={Admin} />
+          <Route path="/mechanic_home" component={Mechanic} />
+          {/* <Route exact path="/login" component={Login} /> */}
+        </Switch>
+      </Router>
+    </>
   );
 }
 

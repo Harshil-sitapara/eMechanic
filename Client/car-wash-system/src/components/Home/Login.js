@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "react-bootstrap/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import AurhService from "../../services/customer/authentication/auth_service";
+import AuthService from "../../services/customer/authentication/auth_service";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import "./Login.css";
 import { useSnackbar } from "notistack";
-import { Redirect } from 'react-router-dom';
+
 
 export default function Login(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -19,16 +19,21 @@ export default function Login(props) {
     mode: "onBlur",
   });
   const onSubmit = (values) => {
-    AurhService.login(values.email, values.password).then((response) => {
+    AuthService.login(values.email, values.password).then((response) => {
       console.log("response_",response);
       if (response && response.token) {
         props.history.push("/cust_home");
         window.location.reload();
       } else {
-        alert("Invalid Email or password!");
+        // alert("Invalid Email or password!");
+        enqueueSnackbar('Invalid Email or password!',{
+          variant: "error",
+        });
       }
     });
   };
+
+
   return (
     <Container maxWidth="xs">
       <div className="login__form">

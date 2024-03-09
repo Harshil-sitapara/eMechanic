@@ -26,15 +26,17 @@ function Cars() {
   }, []);
 
   const [columns, setColumns] = useState([
-    { title: "Name", field: "name" },
+    { title: "Model name", field: "name" },
     { title: "Brand", field: "brand" },
   ]);
 
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = [];
-    if (newData.name === undefined) {
+    if (newData.name === "") {
+      console.log("object");
       errorList.push("Please enter car name");
+      alert("enter car name");
     }
 
     if (newData.brand === undefined) {
@@ -84,6 +86,8 @@ function Cars() {
         resolve();
       });
   };
+
+  //FIXME - update card is not working
 
   const handleRowUpdate = (newData, oldData, resolve) => {
     let errorList = [];

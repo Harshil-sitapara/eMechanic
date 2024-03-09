@@ -19,6 +19,7 @@ function MechanicNav() {
 
   const logout = () => {
     AuthService.logoutMechanic();
+    window.location.reload()
   };
 
   return (
@@ -41,13 +42,13 @@ function MechanicNav() {
         >
           MECHANIC
         </NavLink>
-        <NavLink
+        <a
           onClick={logout}
           className={`nav__link ${show && "nav__linkscroll"}`}
-          to="/login"
+          href="/member_login"
         >
           LOGOUT
-        </NavLink>
+        </a>
       </div>
     </nav>
   );

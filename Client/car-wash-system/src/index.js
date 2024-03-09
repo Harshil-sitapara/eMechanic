@@ -13,7 +13,7 @@ import { SnackbarProvider } from "notistack";
 ReactDOM.render(
   <Router>
     <SnackbarProvider maxSnack={2}>
-      <App />
+        <App />
     </SnackbarProvider>
   </Router>,
 

@@ -19,7 +19,7 @@ verifyToken = (req, res, next) => {
     next();
   } catch (error) {
     return res.status(401).json({
-      message: "LOGIN REQUIRED",
+      message: "LOGIN REQUIRED"+error,
     });
   }
 };

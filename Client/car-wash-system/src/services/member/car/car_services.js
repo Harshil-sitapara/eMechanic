@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "../auth_header";
 
-const API_URL = "http://localhost:8010/admin/car-func/";
+const API_URL = "http://localhost:8088/admin/car-func/";
 
 class CarService {
   getAllBrands() {

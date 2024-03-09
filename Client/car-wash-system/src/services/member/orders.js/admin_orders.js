@@ -1,8 +1,7 @@
 import authHeader from "../auth_header";
 import axios from "axios";
 
-const ORDER_URL = "http://localhost:8010/admin/order/";
-console.log(ORDER_URL)
+const ORDER_URL = "http://localhost:8088/admin/order/";
 const COMPLTED_ORDERS_URL = "http://localhost:8030/order/";
 
 class AdminOrders {
@@ -10,7 +9,7 @@ class AdminOrders {
     return axios
       .get(ORDER_URL + "findPlacedOrder", { headers: authHeader() })
       .then((res) => {
-        console.log("res.data",res.data);
+        // console.log("res.data",res.data);
         return res.data.orders;
       })
       .catch((err) => {
@@ -38,6 +37,16 @@ class AdminOrders {
   findCompletedOrders() {
     return axios
       .get(COMPLTED_ORDERS_URL + "findCompltedOrders")
+      .then((res) => {
+        return res.data.orders;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  findRejectedOrders() {
+    return axios
+      .get(COMPLTED_ORDERS_URL + "findRejectedOrders")
       .then((res) => {
         return res.data.orders;
       })

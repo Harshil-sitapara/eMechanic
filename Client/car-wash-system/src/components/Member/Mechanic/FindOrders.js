@@ -46,6 +46,9 @@ function FindOrders() {
 
   const handleRowUpdate = (newData, oldData, resolve) => {
     let errorList = [];
+    console.log("newData:", newData);
+    console.log("oldData:", oldData);
+
     if (errorList.length < 1) {
       MechanicOrders.updateOrder(newData._id, newData.status)
         .then((res) => {

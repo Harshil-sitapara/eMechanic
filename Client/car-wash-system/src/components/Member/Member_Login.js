@@ -3,42 +3,51 @@ import TextField from "@material-ui/core/TextField";
 import Button from "react-bootstrap/Button";
 import Container from "@material-ui/core/Container";
 import { useForm } from "react-hook-form";
-import AurhService from "../../services/member/auth_service";
+import AuthService from "../../services/member/auth_service";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import "../Home/Login.css";
+import { useSnackbar } from "notistack";
+
 
 export default function Member_Login(props) {
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
   });
+  const { enqueueSnackbar } = useSnackbar();
   const onSubmit = async (values) => {
-  try {
-    const response = await AurhService.login(values.email, values.password);
-    console.log("calling inside");
-    console.log("response_", response);
-    console.log(values.email, values.password);
-
-    if (response && response.role === "ADMIN") {
-      props.history.push("/admin_home");
-      window.location.reload();
-    } else if (response && response.role === "MECHANIC") {
-      props.history.push("/mechanic_home");
-      window.location.reload();
-    } else {
-      props.history.push("/member_login");
-      alert("Invalid email or password!");
+    try {
+      const response = await AuthService.login(values.email, values.password);
+      console.log(values.email, values.password);
+      console.log("response__", response);
+  
+      if (response && response.role === "ADMIN") {
+        console.log("calling onSubmit");
+        props.history.push("/admin_home");
+        window.location.reload();
+      } else if (response && response.role === "MECHANIC") {
+        console.log("calling onSubmit");
+        props.history.push("/mechanic_home");
+        window.location.reload();
+      } else {
+        props.history.push("/member_login");
+        // alert("Invalid email or password!!");
+        enqueueSnackbar('Invalid Email or password!',{
+          variant: "error",
+        });
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        // alert("Invalid email or password!");
+        enqueueSnackbar('Invalid Email or password!',{
+          variant: "error",
+        });
+      } else {
+        console.error("Error:", error);
+      }
     }
-  } catch (error) {
-    // Handle errors, including 401 Unauthorized
-    if (error.response && error.response.status === 401) {
-      alert("Invalid email or password!");
-    } else {
-      console.error("Error:", error);
-    } 
-  }
-};
+  };
   return (
     <Container maxWidth="xs">
       <div className="login__form">

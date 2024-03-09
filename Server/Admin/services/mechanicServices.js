@@ -5,13 +5,13 @@ const MechanicController = require("../controllers/mechanicController");
 
 router.get(
   "/findAvailable",
-  [checkAuth.verifyToken, checkAuth.isAdmin],
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
   MechanicController.findAvailable
 );
 
 router.get(
   "/findAll",
-  [checkAuth.verifyToken, checkAuth.isAdmin],
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
   MechanicController.findAll
 );
 
