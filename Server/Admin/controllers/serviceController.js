@@ -1,7 +1,8 @@
 const ServiceModel = require("../model/serviceModel");
 
 exports.addService = (req, res) => {
-  ServiceModel.findOne({ name: req.body.name })
+  try {
+    ServiceModel.findOne({ name: req.body.name })
     .exec()
     .then((response) => {
       if (response) {
@@ -31,6 +32,10 @@ exports.addService = (req, res) => {
         error: err,
       });
     });
+  } catch (error) {
+    console.log("Internal server error:",error)
+  }
+ 
 };
 
 exports.findAll = (req, res) => {

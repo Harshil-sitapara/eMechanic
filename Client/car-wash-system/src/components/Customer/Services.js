@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import "./CSS/Services.css";
 import Package from "../../services/member/package/package_services";
-import { Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   title: {
@@ -68,7 +68,7 @@ export default function Services(props) {
             <Typography variant="h5" component="h2">
               {res.name}
             </Typography>
-            <Typography component="h6">{res.price}</Typography>
+            <Typography component="h6">{res.price}/-</Typography>
             <Typography variant="body2" component="p">
               {res.description}
             </Typography>
@@ -82,7 +82,7 @@ export default function Services(props) {
             <hr></hr>
             <div className="action_buttons">
               <span className="timeline">
-                {`service done in ${res.timeRequired}`}
+                <strong>Duration:</strong> {res.timeRequired}
               </span>
               <button className="buy_button">Buy</button>
             </div>
@@ -94,7 +94,10 @@ export default function Services(props) {
 
   return (
     <div className="container">
-      <button onClick={() => history.push(`/cust_home`)}>Change Car</button>
+      <Button variant="outlined" onClick={() => history.push(`/cust_home`)}>
+        Change Car
+      </Button>
+      {/* <button >Change Car</button> */}
       <hr />
       <Grid container spacing={5} className="grid_container">
         {services.map((res) => getServiceCards(res))}

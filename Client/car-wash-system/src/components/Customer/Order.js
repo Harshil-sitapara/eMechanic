@@ -61,12 +61,15 @@ function Order(props) {
       service.price
     )
       .then((response) => {
-        enqueueSnackbar(response, {
+        response && enqueueSnackbar(response, {
           variant: "success",
         });
+        response && history.push("/cust_home/mybookings")
       })
       .catch((err) => {
-        console.log(err);
+        enqueueSnackbar(err, {
+          variant: "error",
+        });
       });
   };
 
@@ -118,7 +121,6 @@ function Order(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className=""
               >
                 PLACE ORDER
               </Button>

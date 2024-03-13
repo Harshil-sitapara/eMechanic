@@ -13,8 +13,10 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
+import AuthService from "../../../services/member/auth_service";
+import MechanicOrders from "../../../services/member/Mechanic/Mechanic_Orders";
 
-const useStyles = makeStyles((theme) => ({ 
+const useStyles = makeStyles((theme) => ({
   activeItem: {
     backgroundColor: "#cbcbcb",
   },
@@ -23,11 +25,33 @@ const useStyles = makeStyles((theme) => ({
 function MechanicHome(props) {
   const { history } = props;
   const [activeIndex, setActiveIndex] = useState(0);
+  const [totalMechEarnings, setTotalMechEarnings] = useState(0);
+  const [mechOrders, setMechOrders] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
     document.title = "Dashboard - Mechanic";
+    const mechanic = AuthService.getCurrentMechanic();
+    MechanicOrders.getAllOrders(mechanic.userId)
+      .then((response) => {
+        if (response && Array.isArray(response)) {
+          console.log("responce",response)
+          setMechOrders(response);
+          // let totalEarnings=0;
+          // response.map((order) => {
+          //   const earning = order?.servicePrice;
+          //   totalEarnings = totalEarnings + earning
+          // });
+          // setTotalMechEarnings(totalEarnings);
+        } else {
+          console.error("Invalid response format");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
+  console.log("mechanicorder",mechOrders)
 
   const handleItemClick = (index, path) => {
     setActiveIndex(index);
@@ -61,7 +85,13 @@ function MechanicHome(props) {
       <div className="admin_home">
         <hr />
         <h1 className="text-center">WELCOME MECHANIC</h1>
-
+        <h4 className="totalEarning">
+          Your Total Earnings: &#8377;
+          {mechOrders &&
+            mechOrders.filter((order)=>order.status=="COMPLETED")
+              .map((order) => order.servicePrice)
+              ?.reduce((prev, next) => prev + next,0)}
+        </h4>
         <hr />
 
         <Drawer variant="permanent" className="drawer">

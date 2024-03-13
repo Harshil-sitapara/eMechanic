@@ -15,7 +15,7 @@ function Home() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={WhyUs} />
-        <Route exact path="/whyus" component={WhyUs} />
+        {/* <Route exact path="/whyus" component={WhyUs} /> */}
         <Route exact path="/working" component={Working} />
         <Route exact path="/contact" component={Contact} />
         <Route path="/login" component={Login} />

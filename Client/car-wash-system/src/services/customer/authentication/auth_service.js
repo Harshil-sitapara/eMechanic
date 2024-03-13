@@ -31,11 +31,12 @@ class AuthService {
   }
 
   register(name, email, password) {
-    return axios.post(AUTH_URL + "register", {
-      name,
-      email,
-      password,
-    });
+      const res = axios.post(AUTH_URL + "register", {
+        name,
+        email,
+        password,
+      });
+   return res;
   }
 
   isAuthenticated() {

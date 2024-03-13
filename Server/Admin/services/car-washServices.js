@@ -5,7 +5,7 @@ const ServiceController = require("../controllers/serviceController");
 
 router.post(
   "/addService",
-  [checkAuth.verifyToken, checkAuth.isAdmin],
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
   ServiceController.addService
 );
 
@@ -14,13 +14,13 @@ router.get("/findAll", ServiceController.findAll);
 router.get("/findById/:serviceId", ServiceController.findByServiceId);
 router.patch(
   "/updateService/:serviceId",
-  [checkAuth.verifyToken, checkAuth.isAdmin],
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
   ServiceController.updateService
 );
 
 router.delete(
   "/deleteService/:serviceId",
-  [checkAuth.verifyToken, checkAuth.isAdmin],
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
   ServiceController.deleteService
 );
 module.exports = router;

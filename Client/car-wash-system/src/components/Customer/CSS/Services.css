@@ -12,9 +12,9 @@
 
 .timeline {
   text-align: left;
-  width: 50%;
-  flex: 0 0 50%;
-  max-width: 50%;
+  width: 60%;
+  flex: 0 0 60%;
+  max-width: 60%;
 }
 
 .buy_button {
@@ -26,14 +26,21 @@
   font-size: 0.875rem;
   line-height: 1.5;
   border-color: #cd2f2a;
-  width: 50%;
+  width: 40%;
   right: 10px;
   padding: 0.25rem 0.5rem;
   border: 1px solid transparent;
   margin-left: 100px;
+  height: 35px !important;
 }
 
 .service_card:hover {
   background-color: #e6e8f3;
   transition: 0.3s ease;
+  cursor: pointer;
+}
+.order_card:hover {
+  background-color: #e6e8f3;
+  transition: 0.3s ease;
+  cursor: pointer;
 }

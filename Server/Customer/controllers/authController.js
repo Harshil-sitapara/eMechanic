@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const authConfig = require("../config/authConfig");
 
 exports.register = (req, res, next) => {
-  console.log("Inside Register");
 
   if (!req.body.name || !req.body.email || !req.body.password) {
     return res.status(400).json({ message: "All fields are required" });
@@ -74,7 +73,7 @@ exports.login = (req, res, next) => {
               },
               authConfig.secretKey,
               {
-                expiresIn: "1h",
+                expiresIn: "2h",
               }
             );
             return res.status(200).json({

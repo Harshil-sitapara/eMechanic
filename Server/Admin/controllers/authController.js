@@ -25,7 +25,7 @@ exports.login = (req, res, next) => {
               },
               authConfig.secretKey,
               {
-                expiresIn: "1h",
+                expiresIn: "2h",
               }
             );
             return res.status(200).json({

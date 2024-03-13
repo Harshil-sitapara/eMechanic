@@ -44,10 +44,10 @@ function Cars() {
     }
 
     if (errorList.length < 1) {
-      CarServices.addCar(newData.name, newData.brand)
+      CarServices.addCar(newData.name.trim(), newData.brand.trim())
         .then((res) => {
           let dataToAdd = [...cars];
-          dataToAdd.push(newData);
+          dataToAdd.push(newData.trim());
           setCars(dataToAdd);
           resolve();
           setErrorMessages([]);
@@ -87,7 +87,7 @@ function Cars() {
       });
   };
 
-  //FIXME - update card is not working
+  //FIXME - update car is not working
 
   const handleRowUpdate = (newData, oldData, resolve) => {
     let errorList = [];

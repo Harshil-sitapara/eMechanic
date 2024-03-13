@@ -67,7 +67,7 @@ function Brands(props) {
       {brands ? (
         <Grid container spacing={3} item className="grid_container">
           {Object.keys(brands).map(
-            (brand) => brands[brand].includes(filter) && getCarCard(brand)
+            (brand) => brands[brand].toLowerCase().includes(filter.toLowerCase()) && getCarCard(brand)
           )}
         </Grid>
       ) : (

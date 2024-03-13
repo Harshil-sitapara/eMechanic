@@ -12,7 +12,6 @@ function MyOrders() {
   //for error handling
   const [iserror, setIserror] = useState(false);
   const [errorMessages, setErrorMessages] = useState([]);
-
   useEffect(() => {
     const mechanic = AuthService.getCurrentMechanic();
     MechanicOrders.getAllOrders(mechanic.userId)
@@ -54,7 +53,6 @@ function MyOrders() {
           exportButton: true,
         }}
       />
-      {console.log('orders', orders)}
     </div>
   );
 }

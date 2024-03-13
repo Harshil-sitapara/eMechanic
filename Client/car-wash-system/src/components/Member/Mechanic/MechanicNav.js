@@ -5,7 +5,9 @@ import AuthService from "../../../services/member/auth_service";
 
 function MechanicNav() {
   const [show, setShow] = useState(false);
-
+  const [currentLoginMech, setCurrentLoginMech] = useState(null);
+  
+  
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
@@ -16,6 +18,14 @@ function MechanicNav() {
       window.removeEventListener("scroll", () => {});
     };
   }, []);
+  const fetchCurrentMechanic = async () => {
+    const mechanic = await AuthService.getCurrentMechanic();
+    setCurrentLoginMech(mechanic);
+    console.log("current",currentLoginMech)
+  };
+  useEffect(()=>{
+    fetchCurrentMechanic(); 
+  },[])
 
   const logout = () => {
     AuthService.logoutMechanic();
@@ -40,7 +50,8 @@ function MechanicNav() {
           className={`nav__link ${show && "nav__linkscroll"}`}
           to="/mechanic_home"
         >
-          MECHANIC
+          {currentLoginMech ? currentLoginMech.name : 'MECHANIC'}
+          {/* mechanic */}
         </NavLink>
         <a
           onClick={logout}

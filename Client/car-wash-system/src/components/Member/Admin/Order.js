@@ -4,6 +4,7 @@ import "./CSS/Cars.css";
 import MaterialTable from "material-table";
 import { useSnackbar } from "notistack";
 import Axios from "axios";
+import moment from 'moment'; 
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -23,6 +24,7 @@ function Orders() {
     { title: "Address", field: "custAddress", editable: "never" },
     { title: "Service Name", field: "serviceName", editable: "never" },
     { title: "Price", field: "servicePrice", editable: "never" },
+    { title: "Time", field: "requestedOn", editable: "never" , render: rowData => moment(rowData.requestedOn).format('L') },
   ]);
 
   const [column, setColumn] = useState([
@@ -93,7 +95,7 @@ function Orders() {
         console.log(err);
       });
   };
-
+console.log(orders)
   useEffect(() => {
     getPlacedOrders();
     getAllAvailableMechanics().then((mechanics) => {
@@ -107,6 +109,8 @@ function Orders() {
           title: "Assign Mechanic",
           field: "mechanicId",
           lookup: mechanicsLookUp,
+        //   cellStyle: (rowData) =>
+        // rowData.status === "REJECT" ? { backgroundColor: "red" } : null,
         },
       ]);
       setColumnReject((prevColumns) => [
@@ -182,6 +186,7 @@ function Orders() {
     setdisplay(false);
     setDisplayRejectTable(false)
   };
+  console.log("orders",orders)
   return (
     <div className="cars_container">
       <br />
@@ -189,9 +194,9 @@ function Orders() {
       <button onClick={openTable} className="see-complete-btn">
         Completed Orders
       </button>
-      <button onClick={openRejectedTable} className="see-complete-btn">
+      {/* <button onClick={openRejectedTable} className="see-complete-btn">
         Rejected Orders
-      </button>
+      </button> */}
       <br />
       {orders ? (
         <MaterialTable
@@ -247,7 +252,8 @@ function Orders() {
         </div>
       ) : null}
 
-      {displayRejectTable ? (
+      {/* {displayRejectTable ? ( */}
+      {false ? (
         <div className="rejected_order">
           <h1>REJECTED ORDERS</h1>
           <MaterialTable

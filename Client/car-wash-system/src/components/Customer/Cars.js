@@ -46,7 +46,7 @@ function Cars(props) {
           onClick={() => history.push(`/cust_home/services/${car._id}`)}
         >
           <CardContent>
-            <Typography>{car.name}</Typography>
+            <Typography className="text">{car.name}</Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -69,7 +69,7 @@ function Cars(props) {
         </div>
 
         <Grid container spacing={3} className="grid_container">
-          {cars.map((car) => car.name.includes(filter) && getCarCards(car))}
+          {cars.map((car) => car.name.toLowerCase().includes(filter.toLowerCase()) && getCarCards(car))}
         </Grid>
       </div>
     </div>

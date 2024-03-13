@@ -97,9 +97,9 @@ function Mechanic() {
       <h3 className="ml-2">Mechanic Operations</h3>
       <br />
 
-      <button className="ml-2" onClick={openForm}>
+      <Button variant="contained" className="ml-2 mb-2" onClick={openForm} style={{backgroundColor:"#01579b",color:"white"}}>
         Add Mechanic
-      </button>
+      </Button>
       <br />
       <MaterialTable
         title="MECHANIC DATA"
@@ -137,7 +137,9 @@ function Mechanic() {
                       required: "Name is Required",
                     })}
                   />
-                  {errors.name && <span style={{color:"red"}}>{errors.name.message}</span>}
+                  {errors.name && (
+                    <span style={{ color: "red" }}>{errors.name.message}</span>
+                  )}
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -149,7 +151,11 @@ function Mechanic() {
                       required: "Mobile is Required",
                     })}
                   />
-                  {errors.mobile && <span style={{color:"red"}}>{errors.mobile.message}</span>}
+                  {errors.mobile && (
+                    <span style={{ color: "red" }}>
+                      {errors.mobile.message}
+                    </span>
+                  )}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -166,7 +172,9 @@ function Mechanic() {
                       },
                     })}
                   />
-                  {errors.email && <span style={{color:"red"}}>{errors.email.message}</span>}
+                  {errors.email && (
+                    <span style={{ color: "red" }}>{errors.email.message}</span>
+                  )}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -179,7 +187,11 @@ function Mechanic() {
                       required: "Password is Required",
                     })}
                   />
-                  {errors.password && <span style={{color:"red"}}>{errors.password.message}</span>}
+                  {errors.password && (
+                    <span style={{ color: "red" }}>
+                      {errors.password.message}
+                    </span>
+                  )}
                 </Grid>
               </Grid>
               <br />
@@ -196,7 +208,9 @@ function Mechanic() {
             </form>
           </div>
           <br />
-          <button onClick={closeForm} className="formBtn">Close Form</button>
+          <Button variant="contained" onClick={closeForm} className="formBtn">
+            Close Form
+          </Button>
           <br />
           <br />
           <br />

@@ -20,15 +20,14 @@ function MyBookings() {
   
 
 
-  console.log("res",orders)
   const getOrderCards = (order) => {
     return (
       <Grid item xs={12} sm={12} md={12} lg={12} key={order._id}>
-        <Card variant="outlined" className="service_card">
+        <Card variant="outlined" className="order_card">
           <CardContent>
-            <h2>Your Order Request is {order.status === "REJECT" ? "Waiting...":order.status}</h2>
+            <h2>Your Order Request is {order.status==="REJECT" ? "Waiting...":order.status}</h2>
             <hr />
-            <h5>Car : {order.carName}</h5>
+            <h5><strong>Car : </strong>{order.carName}</h5>
             <h5>Vehicle Number: {order.carNumber}</h5>
             <h5>Address: {order.custAddress}</h5>
             <h5>Service Name: {order.serviceName}</h5>

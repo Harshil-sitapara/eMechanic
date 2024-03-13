@@ -25,7 +25,6 @@ export default function Login(props) {
         props.history.push("/cust_home");
         window.location.reload();
       } else {
-        // alert("Invalid Email or password!");
         enqueueSnackbar('Invalid Email or password!',{
           variant: "error",
         });

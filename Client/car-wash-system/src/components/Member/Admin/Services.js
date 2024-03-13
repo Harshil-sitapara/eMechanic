@@ -49,9 +49,10 @@ function Services() {
   const handleRowAdd = (newData, resolve) => {
     //validation
     let errorList = [];
-    if (newData === undefined) {
-      errorList.push("All fields are Required");
+    if (!newData.serviceType || !newData.name || !newData.price || !newData.description || !newData.timeRequired || !newData.where) {
+      errorList.push("All fields are required");
     }
+  
     if (errorList.length < 1) {
       PackageServices.addService(
         newData.serviceType,
@@ -68,6 +69,7 @@ function Services() {
           resolve();
           setErrorMessages([]);
           setIserror(false);
+          console.log("res",res)
           enqueueSnackbar(res, {
             variant: "success",
           });

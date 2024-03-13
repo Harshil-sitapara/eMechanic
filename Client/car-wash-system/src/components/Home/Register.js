@@ -6,22 +6,39 @@ import Container from "@material-ui/core/Container";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import AurhService from "../../services/customer/authentication/auth_service";
+import { useSnackbar } from "notistack";
 
 function Register(props) {
+  const { enqueueSnackbar } = useSnackbar();
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
   });
   const onSubmit = (values) => {
-    AurhService.register(values.name, values.email, values.password).then(
-      (respone) => {
+    AurhService.register(values.name, values.email, values.password)
+      .then((response) => {
         props.history.push("/login");
-      }
-    );
+      })
+      .catch((error) => {
+        const status = error.response.status;
+        if (status === 409) {
+          enqueueSnackbar(error.response?.data?.message, {
+            variant: "error",
+          });
+        } else if (status === 500) {
+          enqueueSnackbar("Internal server error!", {
+            variant: "error",
+          });
+        } else {
+          enqueueSnackbar(error.response?.data?.message, {
+            variant: "success",
+          });
+        }
+      });
   };
   return (
     <Container maxWidth="xs">
       <div className="login__form">
-        <h1>REGISTER</h1>
+        <h1>Register</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             variant="outlined"
@@ -72,7 +89,12 @@ function Register(props) {
           {errors.password && (
             <span className="span">{errors.password.message}</span>
           )}
-          <Button className="signin__button" type="submit" block color="primary">
+          <Button
+            className="signin__button"
+            type="submit"
+            block
+            color="primary"
+          >
             Sign Up
           </Button>
           <Grid className="login__grid" container>

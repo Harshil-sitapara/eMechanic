@@ -64,11 +64,11 @@ class AuthService {
   }
   // Get current mechanic
   getCurrentMechanic() {
-    return JSON.parse(localStorage.getItem("mechanic"));
+    return JSON.parse(localStorage?.getItem("mechanic"));
   }
   // Get admin
   getAdmin() {
-    return JSON.parse(localStorage.getItem("admin"));
+    return JSON.parse(localStorage?.getItem("admin"));
   }
 }
 
