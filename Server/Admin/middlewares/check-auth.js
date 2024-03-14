@@ -7,14 +7,12 @@ verifyToken = (req, res, next) => {
   try {
     //const token = req.headers.authorization.split(" ")[1];
     const token = req.headers["x-access-token"];
-    //console.log(token);
     if (!token) {
       return res.status(403).send({ message: "No token provided!" });
     }
     const decoded = jwt.verify(token, authConfig.secretKey);
     //req.userData = decoded;
     req.userId = decoded.userId;
-    //console.log(decoded.userId);
     console.log(decoded.userId);
     next();
   } catch (error) {
