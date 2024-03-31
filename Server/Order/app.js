@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dbConfig = require("./config/dbConfig");
+const paymentService = require("./services/paymentServices");
 const orderRoutes = require("./services/orderServices");
 require('dotenv').config();
 
@@ -70,5 +71,9 @@ app.use((error, req, res, next) => {
     },
   });
 });
+
+
+app.use("/api",paymentService.route)
+
 
 module.exports = app;
