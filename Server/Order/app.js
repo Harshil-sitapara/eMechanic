@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dbConfig = require("./config/dbConfig");
 const orderRoutes = require("./services/orderServices");
+const paymentRoutes = require("./services/paymentService");
 require('dotenv').config();
 
 /*
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/order", orderRoutes);
+app.use("/api/order",paymentRoutes)
 
 //Server Side Error Handling
 app.use((req, res, next) => {

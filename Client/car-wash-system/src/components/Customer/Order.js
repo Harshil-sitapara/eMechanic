@@ -4,9 +4,19 @@ import CustomerService from "../../services/customer/customer_service";
 import CarService from "../../services/member/car/car_services";
 import PackageService from "../../services/member/package/package_services";
 import "./CSS/Order.css";
-import { Card, Grid, TextField, Button } from "@material-ui/core";
+import {
+  Card,
+  Grid,
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
+import axios from "axios";
 
 function Order(props) {
   const { match, history } = props;
@@ -16,6 +26,7 @@ function Order(props) {
   const [service, setService] = useState([]);
   const [car, setCar] = useState([]);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [selectedPayment, setSelectedPayment] = useState("");
 
   const getPackage = () => {
     PackageService.findServiceById(serviceId)
@@ -50,7 +61,78 @@ function Order(props) {
     mode: "onBlur",
   });
 
+  // const onSubmit = (values) => {
+  //   CustomerService.placeOrder(
+  //     user.userId,
+  //     user.name,
+  //     car.name,
+  //     values.carNumber,
+  //     values.custAddress,
+  //     service.name,
+  //     service.price
+  //   )
+  //     .then((response) => {
+  //       response && enqueueSnackbar(response, {
+  //         variant: "success",
+  //       });
+  //       response && history.push("/cust_home/mybookings")
+  //     })
+  //     .catch((err) => {
+  //       enqueueSnackbar(err, {
+  //         variant: "error",
+  //       });
+  //     });
+  // };
+
+  useEffect(() => {
+    console.log("selectedPayment", selectedPayment);
+  }, [selectedPayment]);
+  const verifyPayment = (data) => {
+    const options = {
+      key: "rzp_test_KnzgOpiCv73xHv",
+      amount: data.amount,
+      currency: data.currency,
+      description: "Test transaction",
+      order_id: data.id,
+      handler: async (response) => {
+        try {
+          const { data } = await axios.post(
+            "http://localhost:8030/api/order/paymentverification",
+            { response }
+          );
+          console.log("Data", data);
+        } catch (error) {
+          console.log("Error while verify payment:", error);
+        }
+      },
+      theme:{
+        color:"#3399cc"
+      }
+    };
+    const rzp1 = new window.Razorpay(options)
+    rzp1.open();
+  };
+  const paymentHandler = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8030/api/order/checkout",
+        { amount: service.price }
+      );
+      console.log("Data", data);
+      verifyPayment(data.data);
+    } catch (error) {
+      console.log("Error while payment", error);
+    }
+  };
   const onSubmit = (values) => {
+    if (selectedPayment === "Online Payment") {
+      paymentHandler();
+    } else {
+      placeOrder(values);
+    }
+  };
+
+  const placeOrder = (values) => {
     CustomerService.placeOrder(
       user.userId,
       user.name,
@@ -61,10 +143,11 @@ function Order(props) {
       service.price
     )
       .then((response) => {
-        response && enqueueSnackbar(response, {
-          variant: "success",
-        });
-        response && history.push("/cust_home/mybookings")
+        response &&
+          enqueueSnackbar(response, {
+            variant: "success",
+          });
+        response && history.push("/cust_home/mybookings");
       })
       .catch((err) => {
         enqueueSnackbar(err, {
@@ -111,6 +194,34 @@ function Order(props) {
                       required: "Address is Required",
                     })}
                   />
+                  {errors.custAddress && (
+                    <span className="span">{errors.custAddress.message}</span>
+                  )}
+                </Grid>
+                <Grid item xs={6} sm={6} md={6} lg={6}>
+                  <div style={{ margin: "15px" }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Select Payment Method
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={selectedPayment}
+                        label="Select Payment Method"
+                        onChange={(e) => {
+                          setSelectedPayment(e.target.value);
+                        }}
+                      >
+                        <MenuItem value={"Online Payment"}>
+                          Online Payment
+                        </MenuItem>
+                        <MenuItem value={"Cash on delivery"}>
+                          Cash on delivery
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
                   {errors.custAddress && (
                     <span className="span">{errors.custAddress.message}</span>
                   )}
