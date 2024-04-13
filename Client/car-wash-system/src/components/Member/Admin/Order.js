@@ -4,7 +4,7 @@ import "./CSS/Cars.css";
 import MaterialTable from "material-table";
 import { useSnackbar } from "notistack";
 import Axios from "axios";
-import moment from 'moment'; 
+import moment from "moment";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -24,7 +24,12 @@ function Orders() {
     { title: "Address", field: "custAddress", editable: "never" },
     { title: "Service Name", field: "serviceName", editable: "never" },
     { title: "Price", field: "servicePrice", editable: "never" },
-    { title: "Time", field: "requestedOn", editable: "never" , render: rowData => moment(rowData.requestedOn).format('L') },
+    {
+      title: "Time",
+      field: "requestedOn",
+      editable: "never",
+      render: (rowData) => moment(rowData.requestedOn).format("L"),
+    },
   ]);
 
   const [column, setColumn] = useState([
@@ -41,16 +46,15 @@ function Orders() {
     REJECT: "REJECT ORDER",
   };
   const [columnReject, setColumnReject] = useState([
-    { title: "OrderId", field: "_id", editable: "never"  },
-    { title: "Customer Name", field: "customerName", editable: "never"  },
-    { title: "Car Name", field: "carName", editable: "never"  },
-    { title: "Car Number", field: "carNumber", editable: "never"  },
-    { title: "Address", field: "custAddress", editable: "never"  },
-    { title: "Service Name", field: "serviceName", editable: "never"  },
-    { title: "Price", field: "servicePrice", editable: "never"  },
+    { title: "OrderId", field: "_id", editable: "never" },
+    { title: "Customer Name", field: "customerName", editable: "never" },
+    { title: "Car Name", field: "carName", editable: "never" },
+    { title: "Car Number", field: "carNumber", editable: "never" },
+    { title: "Address", field: "custAddress", editable: "never" },
+    { title: "Service Name", field: "serviceName", editable: "never" },
+    { title: "Price", field: "servicePrice", editable: "never" },
   ]);
   const handleRejectOrder = (orderId) => {
-    // Implement your logic to handle rejecting the order with the given orderId
     console.log("Reject order clicked for orderId:", orderId);
   };
 
@@ -95,7 +99,6 @@ function Orders() {
         console.log(err);
       });
   };
-console.log(orders)
   useEffect(() => {
     getPlacedOrders();
     getAllAvailableMechanics().then((mechanics) => {
@@ -109,8 +112,6 @@ console.log(orders)
           title: "Assign Mechanic",
           field: "mechanicId",
           lookup: mechanicsLookUp,
-        //   cellStyle: (rowData) =>
-        // rowData.status === "REJECT" ? { backgroundColor: "red" } : null,
         },
       ]);
       setColumnReject((prevColumns) => [
@@ -120,17 +121,22 @@ console.log(orders)
           field: "mechanicId",
           lookup: mechanicsLookUp,
         },
-        { 
+        {
           title: "Reject Order",
           field: "rejectOrder",
           render: (rowData) => (
-            <button className="reject-button" onClick={() => handleRejectOrder(rowData._id)}>Reject Order</button>
+            <button
+              className="reject-button"
+              onClick={() => handleRejectOrder(rowData._id)}
+            >
+              Reject Order
+            </button>
           ),
         },
       ]);
     });
     getCompletedOrders();
-    getRejectedOrders()
+    getRejectedOrders();
   }, []);
 
   const handleRowUpdate = (newData, oldData, resolve) => {
@@ -172,21 +178,12 @@ console.log(orders)
       }
     }, 0);
   };
-  const openRejectedTable = () => {
-    setDisplayRejectTable(true);
-    setTimeout(() => {
-      const completedElement = document.querySelector(".rejected_order");
-      if (completedElement) {
-        completedElement.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 0);
-  };
 
   const closeTable = () => {
     setdisplay(false);
-    setDisplayRejectTable(false)
+    setDisplayRejectTable(false);
   };
-  console.log("orders",orders)
+  console.log("orders", orders);
   return (
     <div className="cars_container">
       <br />
@@ -194,9 +191,6 @@ console.log(orders)
       <button onClick={openTable} className="see-complete-btn">
         Completed Orders
       </button>
-      {/* <button onClick={openRejectedTable} className="see-complete-btn">
-        Rejected Orders
-      </button> */}
       <br />
       {orders ? (
         <MaterialTable
@@ -215,6 +209,7 @@ console.log(orders)
               color: "#FFF",
             },
             exportButton: true,
+            // 
           }}
         />
       ) : (
@@ -252,29 +247,28 @@ console.log(orders)
         </div>
       ) : null}
 
-      {/* {displayRejectTable ? ( */}
       {false ? (
         <div className="rejected_order">
           <h1>REJECTED ORDERS</h1>
           <MaterialTable
-          title="REJECTED ORDERS DATA BY MECHANICS"
-          columns={columnReject}
-          data={rejectedOrders}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                handleRowUpdate(newData, oldData, resolve);
-              }),
-          }}
-          options={{
-            headerStyle: {
-              backgroundColor: "#01579b",
-              color: "#FFF",
-            },
-            exportButton: true,
-            actionsColumnIndex: 0,
-          }}
-        />
+            title="REJECTED ORDERS DATA BY MECHANICS"
+            columns={columnReject}
+            data={rejectedOrders}
+            editable={{
+              onRowUpdate: (newData, oldData) =>
+                new Promise((resolve, reject) => {
+                  handleRowUpdate(newData, oldData, resolve);
+                }),
+            }}
+            options={{
+              headerStyle: {
+                backgroundColor: "#01579b",
+                color: "#FFF",
+              },
+              exportButton: true,
+              actionsColumnIndex: 0,
+            }}
+          />
           <br />
           <button className="see-complete-btn" onClick={closeTable}>
             Close Table

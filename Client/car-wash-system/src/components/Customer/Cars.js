@@ -69,7 +69,7 @@ function Cars(props) {
         </div>
 
         <Grid container spacing={3} className="grid_container">
-          {cars.map((car) => car.name.toLowerCase().includes(filter.toLowerCase()) && getCarCards(car))}
+          {cars.map((car) => car?.name?.toLowerCase()?.includes(filter?.toLowerCase()) && getCarCards(car))}
         </Grid>
       </div>
     </div>

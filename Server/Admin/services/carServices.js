@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 const CarController = require("../controllers/carController");
+  // [checkAuth.verifyToken, checkAuth.isAdmin],
 
 //Add Car
 router.post(
   "/addCar",
-  // [checkAuth.verifyToken, checkAuth.isAdmin],
   CarController.addCar
 );
 
@@ -24,13 +24,11 @@ router.get("/findByCar/:carId", CarController.findByCarId);
 //Update Car Details
 router.patch(
   "/updateCar/:id",
-  // [checkAuth.verifyToken, checkAuth.isAdmin],
   CarController.updateCar
 );
 
 router.delete(
   "/deleteCar/:carId",
-  // [checkAuth.verifyToken, checkAuth.isAdmin],
   CarController.deleteCar
 );
 module.exports = router;

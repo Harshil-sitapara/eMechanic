@@ -3,9 +3,15 @@ const router = express.Router();
 const checkAuth = require("../middlewares/check-auth");
 const OrderController = require("../controllers/ordersController");
 
-router.post("/addOrder", [checkAuth.verifyToken], OrderController.addOrder);
+router.post("/addOrder", OrderController.addOrder);
 
-router.get("/findCompltedOrders", OrderController.findCompltedOrders);
-router.get("/findRejectedOrders", OrderController.findRejectedOrders);
+router.get(
+  "/findCompltedOrders",
+  OrderController.findCompltedOrders
+);
+router.get(
+  "/findRejectedOrders",
+  OrderController.findRejectedOrders
+);
 
 module.exports = router;

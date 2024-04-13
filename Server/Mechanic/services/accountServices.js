@@ -5,13 +5,11 @@ const AccountController = require("../controllers/accountController");
 
 router.patch(
   "/update/:mechId",
-  [checkAuth.verifyToken],
   AccountController.updateProfile
 );
 
 router.delete(
   "/delete/:mechId",
-  [checkAuth.verifyToken],
   AccountController.deleteProfile
 );
 
