@@ -12,7 +12,7 @@ const mechanicRoutes = require("./services/mechanicServices");
 require("dotenv").config();
 
 var corsOptions = {
-  origin: ["http://localhost:3000", "https://e-mechanic.vercel.app"],
+  origin: "*",
 };
 
 app.use(cors(corsOptions));
