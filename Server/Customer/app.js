@@ -7,7 +7,7 @@ const cors = require("cors");
 const authRoutes = require("./services/authServices");
 const accountRoutes = require("./services/accountServices");
 const orderRoutes = require("./services/orderServices");
-require('dotenv').config();
+require("dotenv").config();
 
 /*
 Via Express routes, HTTP request that matches a route will be checked by 
@@ -23,15 +23,14 @@ module.exports = {
   secretKey: "customer_server_key",
 };
 
-
-
 mongoose
   .connect(
     // `mongodb://localhost:27017/emechanic`,
     process.env.MONGO_URL,
     { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
-  ).then(()=>{
-      console.log("Connected to MongoDb Database");
+  )
+  .then(() => {
+    console.log("Connected to MongoDb Database");
   })
   .catch((err) => {
     console.log("Database Connection Error: " + err);
@@ -48,9 +47,12 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+  );
   if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
+    return res.status(200).end();
   }
   next();
 });
@@ -60,7 +62,9 @@ app.use("/customer/auth", authRoutes);
 app.use("/customer/account", accountRoutes);
 app.use("/customer/order", orderRoutes);
 app.get("/", (req, res) => {
-  res.json({ message: "Customer Server: Up and running. All services are operational." });
+  res.json({
+    message: "Customer Server: Up and running. All services are operational.",
+  });
 });
 
 //Server Side Error Handling

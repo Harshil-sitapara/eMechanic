@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dbConfig = require("./config/dbConfig");
 const orderRoutes = require("./services/orderServices");
-require('dotenv').config();
+require("dotenv").config();
 
 /*
 Via Express routes, HTTP request that matches a route will be checked by 
@@ -46,18 +46,22 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+  );
   if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
+    return res.status(200).end();
   }
   next();
 });
 
 app.use("/order", orderRoutes);
 app.get("/", (req, res) => {
-  res.json({ message: "Orders Server: Up and running. All services are operational." });
+  res.json({
+    message: "Orders Server: Up and running. All services are operational.",
+  });
 });
-
 
 //Server Side Error Handling
 app.use((req, res, next) => {
