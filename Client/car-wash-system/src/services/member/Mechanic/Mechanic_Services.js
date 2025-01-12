@@ -2,8 +2,8 @@ import axios from "axios";
 // import mechHeader from "../mech_header";
 import authHeader from "../auth_header";
 
-const API_URL = "http://localhost:8088/admin/mechanic/";
-const ACC_URL = "http://localhost:8020/mechanic/account/";
+const API_URL = `${process.env.REACT_APP_ADMIN_SERVER}/admin/mechanic/`;
+const ACC_URL = `${process.env.REACT_APP_MECHANIC_SERVER}/mechanic/account/`;
 
 class MechanicService {
   findAll() {

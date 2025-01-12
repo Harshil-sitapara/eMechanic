@@ -9,7 +9,7 @@ const orderRoutes = require("./services/orderServices");
 require('dotenv').config();
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://e-mechanic.vercel.app"],
 };
 
 app.use(cors(corsOptions));
@@ -53,6 +53,10 @@ app.use((req, res, next) => {
 //Every request from admin route goes through this url : /admin
 app.use("/mechanic/account", accountRoutes);
 app.use("/mechanic/orders", orderRoutes);
+app.get("/", (req, res) => {
+  res.json({ message: "Mechanic Server: Up and running. All services are operational." });
+});
+
 
 //Server Side Error Handling
 app.use((req, res, next) => {

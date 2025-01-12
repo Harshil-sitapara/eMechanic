@@ -89,7 +89,7 @@ function Orders() {
 
   const getAllAvailableMechanics = () => {
     const token = localStorage.getItem("token");
-    const route = "http://localhost:8088/admin/mechanic/";
+    const route = `${process.env.REACT_APP_ADMIN_SERVER}/admin/mechanic/`;
     return Axios.get(route + "findAvailable")
       .then((res) => {
         console.log("res.data mechanic", res.data);

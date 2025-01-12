@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AUTH_URL = "http://localhost:8080/customer/auth/";
+const AUTH_URL = `${process.env.REACT_APP_CUSTOMER_SERVER}/customer/auth/`;
 
 class AuthService {
   constructor() {

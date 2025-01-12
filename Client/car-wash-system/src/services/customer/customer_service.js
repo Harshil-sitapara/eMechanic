@@ -1,8 +1,8 @@
 import axios from "axios";
 import authHeader from "./authentication/auth_header";
 
-const ORDER_URL = "http://localhost:8030/order/";
-const CUST_ORDER = "http://localhost:8080/customer/order/";
+const ORDER_URL = `${process.env.REACT_APP_ORDERS_SERVER}/order/`;
+const CUST_URL = process.env.REACT_APP_CUSTOMER_SERVER;
 
 class CustomerService {
   placeOrder(
@@ -40,7 +40,7 @@ class CustomerService {
 
   findMyOrders(id) {
     return axios
-      .get(CUST_ORDER + `findOrders/${id}`, {
+      .get(CUST_URL + `/customer/order/findOrders/${id}`, {
         headers: authHeader(),
       })
       .then((response) => {
@@ -53,7 +53,7 @@ class CustomerService {
 
   findCustomerById(id) {
     return axios
-      .get(`http://localhost:8080/customer/account/findCustById/${id}`)
+      .get(`${CUST_URL}/customer/account/findCustById/${id}`)
       .then((res) => {
         return res.data;
       })

@@ -1,8 +1,8 @@
 import authHeader from "../auth_header";
 import axios from "axios";
 
-const ORDER_URL = "http://localhost:8088/admin/order/";
-const COMPLTED_ORDERS_URL = "http://localhost:8030/order/";
+const ORDER_URL = `${process.env.REACT_APP_ADMIN_SERVER}/admin/order/`;
+const COMPLTED_ORDERS_URL = `${process.env.REACT_APP_ORDERS_SERVER}/order/`;
 
 class AdminOrders {
   findPlacedOrders() {

@@ -9,14 +9,13 @@ const carRoutes = require("./services/carServices");
 const serviceRoutes = require("./services/car-washServices");
 const orderRoutes = require("./services/orderServices");
 const mechanicRoutes = require("./services/mechanicServices");
-require('dotenv').config();
+require("dotenv").config();
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://e-mechanic.vercel.app"],
 };
 
 app.use(cors(corsOptions));
-
 
 module.exports = {
   secretKey: "admin_server_key",
@@ -59,8 +58,13 @@ app.use((req, res, next) => {
 app.use("/admin/auth", authRoutes);
 app.use("/admin/car-func", carRoutes);
 app.use("/admin/car-services", serviceRoutes);
-app.use("/admin/order", orderRoutes);-
+app.use("/admin/order", orderRoutes);
 app.use("/admin/mechanic", mechanicRoutes);
+app.get("/", (req, res) => {
+  res.json({
+    message: "Admin Server: Up and running. All services are operational.",
+  });
+});
 
 //Server Side Error Handling
 app.use((req, res, next) => {

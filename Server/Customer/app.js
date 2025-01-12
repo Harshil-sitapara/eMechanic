@@ -14,7 +14,7 @@ Via Express routes, HTTP request that matches a route will be checked by
 CORS Middleware before coming to Security layer
 */
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://e-mechanic.vercel.app"],
 };
 app.use(cors(corsOptions));
 
@@ -59,6 +59,9 @@ app.use((req, res, next) => {
 app.use("/customer/auth", authRoutes);
 app.use("/customer/account", accountRoutes);
 app.use("/customer/order", orderRoutes);
+app.get("/", (req, res) => {
+  res.json({ message: "Customer Server: Up and running. All services are operational." });
+});
 
 //Server Side Error Handling
 app.use((req, res, next) => {

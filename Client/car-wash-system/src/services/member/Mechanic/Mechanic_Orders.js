@@ -1,7 +1,7 @@
 import axios from "axios";
 import mechHeader from "../mech_header";
 
-const API_URL = "http://localhost:8020/mechanic/orders/";
+const API_URL = `${process.env.REACT_APP_MECHANIC_SERVER}/mechanic/orders/`;
 
 class MechanicOrders {
   getInProcessOrders(mechId) {

@@ -31,9 +31,7 @@ exports.getAllCustomers = (req, res) => {
             _id: result._id,
             request: {
               type: "GET",
-              url:
-                "http://localhost:8080/customer/account/findCustById/" +
-                result._id,
+              url: `${process.env.REACT_APP_CUSTOMER_SERVER}/customer/account/findCustById/${result._id}`,
             },
           };
         }),

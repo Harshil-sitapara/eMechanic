@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "../member/auth_header";
 
-const AUTH_URL = "http://localhost:8088/admin/auth/";
+const AUTH_URL = `${process.env.REACT_APP_ADMIN_SERVER}/admin/auth/`;
 class AuthService {
   // Login method
   async login(email, password) {
