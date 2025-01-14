@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "react-bootstrap/Button";
 import Grid from "@material-ui/core/Grid";
@@ -11,27 +11,35 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import "./Login.css";
 import { useSnackbar } from "notistack";
-
+import { CircularProgress } from "@material-ui/core";
 
 export default function Login(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState(false);
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
   });
-  const onSubmit = (values) => {
-    AuthService.login(values.email, values.password).then((response) => {
-      console.log("response_",response);
+
+  const onSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const response = await AuthService.login(values.email, values.password);
       if (response && response.token) {
         props.history.push("/cust_home");
         window.location.reload();
       } else {
-        enqueueSnackbar('Invalid Email or password!',{
+        enqueueSnackbar("Invalid Email or password!", {
           variant: "error",
         });
       }
-    });
+    } catch (error) {
+      enqueueSnackbar("Invalid Email or password!", {
+        variant: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
-
 
   return (
     <Container maxWidth="xs">
@@ -79,8 +87,13 @@ export default function Login(props) {
             style={{ width: "50%" }}
             block
             color="primary"
+            disabled={loading}
           >
-            Sign In
+            {loading ? (
+              <CircularProgress size={15} color="inherit" />
+            ) : (
+              "Sign In"
+            )}
           </Button>
           <Grid className="login__grid" container>
             <Grid item xs>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "react-bootstrap/Button";
 import Container from "@material-ui/core/Container";
@@ -9,43 +9,35 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import "../Home/Login.css";
 import { useSnackbar } from "notistack";
-
+import { CircularProgress } from "@material-ui/core";
 
 export default function Member_Login(props) {
+  const [loading, setLoading] = useState(false);
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
   });
   const { enqueueSnackbar } = useSnackbar();
   const onSubmit = async (values) => {
+    setLoading(true);
     try {
       const response = await AuthService.login(values.email, values.password);
-      console.log(values.email, values.password);
-      console.log("response__", response);
-  
       if (response && response.role === "ADMIN") {
-        console.log("calling onSubmit");
         props.history.push("/admin_home");
         window.location.reload();
       } else if (response && response.role === "MECHANIC") {
-        console.log("calling onSubmit");
         props.history.push("/mechanic_home");
         window.location.reload();
       } else {
-        props.history.push("/member_login");
-        // alert("Invalid email or password!!");
-        enqueueSnackbar('Invalid Email or password!',{
+        enqueueSnackbar("Invalid Email or password!", {
           variant: "error",
         });
       }
     } catch (error) {
-      if (error.response && error.response.status === 401) {
-        // alert("Invalid email or password!");
-        enqueueSnackbar('Invalid Email or password!',{
-          variant: "error",
-        });
-      } else {
-        console.error("Error:", error);
-      }
+      enqueueSnackbar("Invalid Email or password!", {
+        variant: "error",
+      });
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -93,8 +85,13 @@ export default function Member_Login(props) {
             type="submit"
             block
             color="primary"
+            disabled={loading}
           >
-            Sign In
+            {loading ? (
+              <CircularProgress size={15} color="inherit" />
+            ) : (
+              "Sign In"
+            )}
           </Button>
         </form>
       </div>

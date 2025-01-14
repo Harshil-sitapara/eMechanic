@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -26,12 +26,13 @@
     "react-hook-form": "^6.5.3",
     "react-icons": "^4.8.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^3.4.4",
     "react-validation": "^3.0.7",
     "validator": "^13.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
