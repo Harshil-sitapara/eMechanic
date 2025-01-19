@@ -15,6 +15,10 @@ export default function Member_Login(props) {
   const [loading, setLoading] = useState(false);
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
+    defaultValues: {
+      email: "max@gmail.com",
+      password: "123456",
+    },
   });
   const { enqueueSnackbar } = useSnackbar();
   const onSubmit = async (values) => {

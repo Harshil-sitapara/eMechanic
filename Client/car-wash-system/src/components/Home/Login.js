@@ -18,6 +18,10 @@ export default function Login(props) {
   const [loading, setLoading] = useState(false);
   const { handleSubmit, register, errors } = useForm({
     mode: "onBlur",
+    defaultValues: {
+      email: "demo@gmail.com",
+      password: "123456",
+    }
   });
 
   const onSubmit = async (values) => {
