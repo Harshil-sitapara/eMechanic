@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { useForm } from "react-hook-form";
+import PasswordField from "../../PasswordField";
 
 function Mechanic() {
   const [mechanic, setMechanic] = useState([]);
@@ -177,21 +178,14 @@ function Mechanic() {
                   )}
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    name="password"
+                  <PasswordField
                     label="Password"
-                    type="password"
+                    name="password"
                     inputRef={register({
                       required: "Password is Required",
                     })}
+                    error={errors.password?.message}
                   />
-                  {errors.password && (
-                    <span style={{ color: "red" }}>
-                      {errors.password.message}
-                    </span>
-                  )}
                 </Grid>
               </Grid>
               <br />

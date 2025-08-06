@@ -2,32 +2,41 @@ import React, { useEffect, useState } from "react";
 import CustomerService from "../../services/customer/customer_service";
 import AuthService from "../../services/customer/authentication/auth_service";
 import "./CSS/MyBookings.css";
-import { Card, Grid, CardContent,Button } from "@material-ui/core";
+import { Card, Grid, CardContent, Button } from "@material-ui/core";
+import Loader from "../Loader";
 
 function MyBookings() {
   const [orders, setorders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const user = AuthService.getCurrentCustomer();
+    setLoading(true);
     CustomerService.findMyOrders(user.userId)
       .then((res) => {
-      setorders(res);
+        setorders(res);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }, []);
-  
-
 
   const getOrderCards = (order) => {
     return (
       <Grid item xs={12} sm={12} md={12} lg={12} key={order._id}>
         <Card variant="outlined" className="order_card">
           <CardContent>
-            <h2>Your Order Request is {order.status==="REJECT" ? "Waiting...":order.status}</h2>
+            <h2>
+              Your Order Request is{" "}
+              {order.status === "REJECT" ? "Waiting..." : order.status}
+            </h2>
             <hr />
-            <h5><strong>Car : </strong>{order.carName}</h5>
+            <h5>
+              <strong>Car : </strong>
+              {order.carName}
+            </h5>
             <h5>Vehicle Number: {order.carNumber}</h5>
             <h5>Address: {order.custAddress}</h5>
             <h5>Service Name: {order.serviceName}</h5>
@@ -43,7 +52,9 @@ function MyBookings() {
   return (
     <div className="container">
       <h1 className="summary_title">MY BOOKINGS</h1>
-      {orders ? (
+      {loading ? (
+        <Loader />
+      ) : orders && orders.length > 0 ? (
         <Grid container spacing={4} className="mt-3">
           {orders.map((order) => getOrderCards(order))}
         </Grid>

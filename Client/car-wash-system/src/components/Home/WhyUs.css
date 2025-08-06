@@ -7,6 +7,8 @@
   padding: 20px;
   flex-direction: row;
   margin: 60px;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner__image {
@@ -14,15 +16,19 @@
   height: 450px;
   display: block;
   width: 700px;
+  max-width: 90vw;
+  height: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .banner__contentRight {
   margin-left: 100px;
+  min-width: 250px;
 }
 
 .banner__contentLeft {
   margin-right: 100px;
+  min-width: 250px;
 }
 
 .banner__heading {
@@ -30,6 +36,7 @@
   color: rgb(23, 31, 60);
   margin-top: 10px;
   text-align: center;
+  font-size: 2.2rem;
 }
 
 .banner__feature {
@@ -85,46 +92,139 @@
   font-family: "Poppins", sans-serif;
   text-align: justify;
 }
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .banner__image {
+    width: 400px;
+    max-width: 60vw;
+  }
+  .banner__contentRight, .banner__contentLeft {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .banner {
+    margin: 20px;
+    padding: 10px;
+  }
+  .banner__image {
+    width: 250px;
+    max-width: 80vw;
+  }
+  .banner__contentRight, .banner__contentLeft {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .banner__heading {
+    font-size: 1.5rem;
+  }
+  .feature__heading {
+    font-size: 1.2rem;
+  }
+  .banner__para, .feature__subHeading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px 0;
+    padding: 8px 8px;
+    box-sizing: border-box;
+  }
+  .banner__image {
+    margin: 0 auto 14px auto;
+    width: 100%;
+    max-width: 95vw;
+    height: auto;
+  }
+  .banner__contentRight, .banner__contentLeft {
+    margin: 0 0 14px 0;
+    min-width: 0;
+    width: 100%;
+    padding: 0 2px;
+    box-sizing: border-box;
+  }
+  .banner__heading {
+    font-size: 1.05rem;
+    padding: 0 2px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .banner__feature {
+    font-size: 0.95rem;
+    padding: 2px 6px;
+    margin-top: 10px;
+  }
+  .feature__heading {
+    font-size: 1.05rem;
+    margin-top: 16px;
+    padding-bottom: 0.3rem !important;
+  }
+  .feature__subHeading {
+    font-size: 0.95rem;
+    padding-bottom: 0.6rem !important;
+  }
+  .banner__para {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0 2px;
+    margin: 6px 0;
+  }
+  .points {
+    font-size: 0.92rem;
+    margin: 2px 0;
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: 500px) {
+  .component {
+    margin-top: 54px;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+  .banner__heading {
+    font-size: 0.98rem;
+    padding: 0 1px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .banner__feature {
+    font-size: 0.85rem;
+    padding: 1px 4px;
+    margin-top: 6px;
+  }
+  .feature__heading {
+    font-size: 0.98rem;
+    margin-top: 10px;
+    padding-bottom: 0.2rem !important;
+  }
+  .feature__subHeading {
+    font-size: 0.85rem;
+    padding-bottom: 0.3rem !important;
+  }
+  .banner__para {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0 1px;
+    margin: 4px 0;
+  }
+  .points {
+    font-size: 0.82rem;
+    margin: 1px 0;
+    padding: 0 1px;
+  }
+}
 .userbg{
   height: 100%;
   width: 100%;
-
-
 }
-/* .head{
-  position: absolute;
-  top: 50%;
-  left: 15%;
-
-
-} */
-/* .title{
-  color: yellow;
-  left: 25%;
-  position: relative;
-  font-size: 35px;
-
-}
-.text{
-  width: 99%;
-  left: 25%;
-position: relative;
-  font-size: 50px;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .col{
   margin: 3rem;
@@ -135,13 +235,11 @@ position: relative;
 
 .tips_container{
   display: flex;
-  /* border: 1px solid red; */
   margin:2rem;
 }
 
 .bigcontainer{
  margin: 1rem;
- /* border: 2px solid blue; */
  padding: 10px;
  width: 50vw; display: flex;
  flex-direction: column;
@@ -150,7 +248,6 @@ position: relative;
 }
 .smallcontainer{
   margin: 3rem;
-  /* border: 2px solid rgb(141, 0, 0); */
   height: 10%;
   background-color: #f5f5f5;
   padding: 10px;
@@ -164,7 +261,6 @@ position: relative;
 .advice_item{
   display: flex;
   flex-direction: column;
-  /* border: 1px solid black; */
   background-color: #f5f5f5;
   padding: 10px;
   margin:1rem;
@@ -179,12 +275,6 @@ position: relative;
   opacity: 0.7;
   padding-left: 10px;
 }
-
-
-
-
-
-
 
 .head{
   display: flex;
@@ -202,7 +292,6 @@ position: relative;
   height: 60%;
 
 }
-
 
 .btn-danger{
   width: 225px;
@@ -250,12 +339,9 @@ small{
   font-size: 16px;
 }
 
-
-
 .activeuser_container {
   width: 100%;
   margin: 5% 0% 5% 0%;
-  /* height: 30vh; */
   display: flex;
   align-items: center;
 
@@ -286,7 +372,6 @@ small{
   padding-right: 10px;
 }
 
-
 .activenumbers {
   font-size: 30px;
   font-family: Red Hat Display;
@@ -296,8 +381,6 @@ small{
   color: var(--primary-color);
 
 }
-
-
 
 .rentention {
   width: 33%;

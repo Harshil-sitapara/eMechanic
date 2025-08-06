@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import "../Home/Login.css";
 import { useSnackbar } from "notistack";
 import { CircularProgress } from "@material-ui/core";
+import PasswordField from "../PasswordField";
 
 export default function Member_Login(props) {
   const [loading, setLoading] = useState(false);
@@ -70,20 +71,14 @@ export default function Member_Login(props) {
             })}
           />
           {errors.email && <span className="span">{errors.email.message}</span>}
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
+          <PasswordField
             label="Password"
-            type="password"
             name="password"
             inputRef={register({
               required: "Password is Required",
             })}
+            error={errors.password?.message}
           />
-          {errors.password && (
-            <span className="span">{errors.password.message}</span>
-          )}
           <Button
             className="signin__button"
             type="submit"

@@ -4,18 +4,19 @@ import {
   Grid,
   Card,
   CardContent,
-  CircularProgress,
   Typography,
   TextField,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import "./CSS/Brands.css";
 import CarService from "../../services/member/car/car_services";
+import Loader from "../Loader";
 
 function Brands(props) {
   const { history } = props;
   const [brands, setbrands] = useState([]);
   const [filter, setfilter] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const handleSearchChange = (e) => {
     setfilter(e.target.value);
@@ -28,6 +29,9 @@ function Brands(props) {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -64,14 +68,16 @@ function Brands(props) {
         />
       </div>
 
-      {brands ? (
+      {loading ? (
+        <Loader />
+      ) : (
         <Grid container spacing={3} item className="grid_container">
           {Object.keys(brands).map(
-            (brand) => brands[brand].toLowerCase().includes(filter.toLowerCase()) && getCarCard(brand)
+            (brand) =>
+              brands[brand].toLowerCase().includes(filter.toLowerCase()) &&
+              getCarCard(brand)
           )}
         </Grid>
-      ) : (
-        <CircularProgress />
       )}
     </div>
   );

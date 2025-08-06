@@ -1,4 +1,67 @@
 .container {
   margin-top: 80px;
-  margin-bottom: 150px;
+  margin-bottom: 80px;
+  padding-bottom: 80px; /* Add padding to account for fixed footer */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 10px;
+    margin-bottom: 80px;
+    padding-bottom: 80px; /* Add padding to account for fixed footer */
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 0 4px;
+    padding-bottom: 80px; /* Add padding to account for fixed footer */
+  }
+  h1 {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .MuiTypography-h6 {
+    font-size: 1rem !important;
+  }
+  .MuiTypography-body1 {
+    font-size: 0.92rem !important;
+  }
+  .MuiPaper-root {
+    padding: 4px 8px !important;
+  }
+  .MuiTimeline-root {
+    padding: 0 !important;
+  }
+  .MuiTimelineItem-root {
+    min-height: 0 !important;
+  }
+  .MuiTimelineDot-root {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .MuiSvgIcon-root {
+    font-size: 1.2rem !important;
+  }
+  .MuiTimelineSeparator-root {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 }

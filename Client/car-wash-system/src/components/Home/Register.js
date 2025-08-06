@@ -5,8 +5,9 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import AurhService from "../../services/customer/authentication/auth_service";
+import AuthService from "../../services/customer/authentication/auth_service";
 import { useSnackbar } from "notistack";
+import PasswordField from "./PasswordField";
 
 function Register(props) {
   const { enqueueSnackbar } = useSnackbar();
@@ -14,7 +15,7 @@ function Register(props) {
     mode: "onBlur",
   });
   const onSubmit = (values) => {
-    AurhService.register(values.name, values.email, values.password)
+    AuthService.register(values.name, values.email, values.password)
       .then((response) => {
         props.history.push("/login");
       })
@@ -70,12 +71,8 @@ function Register(props) {
             })}
           />
           {errors.email && <span className="span">{errors.email.message}</span>}
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
+          <PasswordField
             label="Password"
-            type="password"
             name="password"
             placeholder="Enter Password"
             inputRef={register({
@@ -85,10 +82,8 @@ function Register(props) {
                 message: "Minimum length of 6 is required",
               },
             })}
+            error={errors.password?.message}
           />
-          {errors.password && (
-            <span className="span">{errors.password.message}</span>
-          )}
           <Button
             className="signin__button"
             type="submit"
